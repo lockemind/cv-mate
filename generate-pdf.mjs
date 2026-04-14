@@ -1,10 +1,12 @@
 /**
- * Local preview server — renders the CV from _data/ YAML files.
- * Usage: node preview.mjs
- * Then open http://localhost:4000
+ * Generate a PDF of the CV.
+ * Spins up the preview server, navigates Puppeteer to it, then exports PDF.
+ * Usage: node generate-pdf.mjs [output-path]
+ * Example: node generate-pdf.mjs output/pedro-amaral-cv.pdf
  */
 
 import http from "http";
+import puppeteer from "puppeteer-core";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -13,6 +15,17 @@ import nunjucks from "nunjucks";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+const CHROME_PATH =
+  process.env.CHROME_PATH ||
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+
+const PORT = 4001;
+const outputArg = process.argv[2] || "assets/cv.pdf";
+const outputPath = path.resolve(__dirname, outputArg);
+
+fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+
+// ── Shared render logic (same as preview.mjs) ─────────────────
 function loadData() {
   const dataDir = path.join(__dirname, "_data");
   return {
@@ -24,13 +37,15 @@ function loadData() {
   };
 }
 
-// Nunjucks template — mirrors the Jekyll layout
+// Import the template string from preview.mjs by reading the file
+// Instead, share a common template module — for now inline it identically.
 const TEMPLATE = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ data.profile.name }} — CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/cv.css">
 </head>
 <body>
@@ -44,7 +59,6 @@ const TEMPLATE = `<!DOCTYPE html>
     <div class="cv-header__contact">
       <span>{{ data.profile.contact.email }}</span>
       <span>{{ data.profile.contact.location }}</span>
-      <a class="cv-pdf-link" href="/assets/cv.pdf" download>Download PDF</a>
     </div>
   </header>
 
@@ -156,27 +170,53 @@ const TEMPLATE = `<!DOCTYPE html>
 </body>
 </html>`;
 
-const server = http.createServer((req, res) => {
-  // Serve CSS
-  if (req.url === "/assets/css/cv.css") {
-    const css = fs.readFileSync(path.join(__dirname, "assets/css/cv.css"), "utf8");
-    res.writeHead(200, { "Content-Type": "text/css" });
-    return res.end(css);
-  }
+// ── Spin up a local server so Puppeteer has a real origin ──────
+function startServer() {
+  return new Promise((resolve) => {
+    const server = http.createServer((req, res) => {
+      if (req.url === "/assets/css/cv.css") {
+        const css = fs.readFileSync(path.join(__dirname, "assets/css/cv.css"), "utf8");
+        res.writeHead(200, { "Content-Type": "text/css" });
+        return res.end(css);
+      }
+      const data = loadData();
+      const html = nunjucks.renderString(TEMPLATE, { data });
+      res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+      res.end(html);
+    });
+    server.listen(PORT, () => resolve(server));
+  });
+}
 
-  // Render CV (reload data on each request so edits are live)
+async function generate() {
+  const server = await startServer();
+
+  const browser = await puppeteer.launch({
+    executablePath: CHROME_PATH,
+    headless: true,
+    args: ["--no-sandbox"],
+  });
+
   try {
-    const data = loadData();
-    const html = nunjucks.renderString(TEMPLATE, { data });
-    res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-    res.end(html);
-  } catch (err) {
-    res.writeHead(500, { "Content-Type": "text/plain" });
-    res.end(`Error: ${err.message}`);
-  }
-});
+    const page = await browser.newPage();
+    await page.emulateMediaType("screen");
+    await page.goto(`http://localhost:${PORT}`, { waitUntil: "networkidle0" });
 
-server.listen(4000, () => {
-  console.log("CV preview running at http://localhost:4000");
-  console.log("Edit _data/*.yaml and refresh to see changes.");
+    await page.pdf({
+      path: outputPath,
+      format: "A4",
+      printBackground: true,
+      margin: { top: "12mm", bottom: "12mm", left: "10mm", right: "10mm" },
+    });
+
+    console.log(`PDF generated: ${outputPath}`);
+  } finally {
+    await browser.close();
+    server.close();
+  }
+}
+
+generate().catch((err) => {
+  console.error(err.message);
+  process.exit(1);
 });

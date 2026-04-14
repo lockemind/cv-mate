@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 /* ── Reset & Base ─────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -10,7 +12,7 @@
   --color-sidebar-bg: #f8f8f8;
   --color-tag-bg:     #e8edf8;
   --color-tag-text:   #1d4ed8;
-  --font-sans:        'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-sans:        'Inter', system-ui, -apple-system, sans-serif;
   --font-size-base:   13px;
   --sidebar-width:    240px;
 }
@@ -62,6 +64,27 @@ body {
   gap: 0.2rem;
   font-size: 0.8rem;
   color: var(--color-muted);
+}
+
+.cv-pdf-link {
+  margin-top: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+  border: 1px solid var(--color-accent);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.cv-pdf-link:hover {
+  background: var(--color-accent);
+  color: white;
+}
+
+@media print {
+  .cv-pdf-link { display: none; }
 }
 
 /* ── Body (sidebar + main) ────────────────────────────────── */
