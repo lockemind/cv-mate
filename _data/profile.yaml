@@ -1,0 +1,29 @@
+name: Pedro Amaral
+title: Software Engineer
+headline: Tech Lead & Frontend Developer
+
+contact:
+  email: pedr.amaral@gmail.com
+  location: Porto, Portugal
+
+summary: >
+  Experienced Tech Lead and Frontend Developer skilled in leading and supporting teams,
+  collaborating on technical decisions, and delivering modern frontend architectures.
+  Comfortable taking ownership of both technical tasks and team guidance, with a focus
+  on code quality, maintainability, and learning. Value open communication, collaboration,
+  and ongoing improvement in both technical and team practices.
+
+languages:
+  - name: English
+    level: Proficient
+    certification: CAE (Certificate in Advanced English), University of Cambridge
+  - name: Portuguese
+    level: Native
+
+interests:
+  - Father of 2
+  - Music
+  - Reading
+  - Traveling
+  - Cinema
+  - Gaming

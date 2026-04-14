@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ site.data.profile.name }} — CV</title>
+  <link rel="stylesheet" href="{{ '/assets/css/cv.css' | relative_url }}">
+</head>
+<body>
+  <div class="cv">
+
+    <!-- HEADER -->
+    <header class="cv-header">
+      <div class="cv-header__identity">
+        <h1>{{ site.data.profile.name }}</h1>
+        <p class="cv-header__title">{{ site.data.profile.title }}</p>
+      </div>
+      <div class="cv-header__contact">
+        <span>{{ site.data.profile.contact.email }}</span>
+        <span>{{ site.data.profile.contact.location }}</span>
+      </div>
+    </header>
+
+    <div class="cv-body">
+
+      <!-- SIDEBAR -->
+      <aside class="cv-sidebar">
+
+        <section class="cv-section">
+          <h2>Skills</h2>
+          <div class="cv-skills">
+            <h3>Leadership</h3>
+            <ul>
+              {% for skill in site.data.skills.leadership %}
+              <li>{{ skill }}</li>
+              {% endfor %}
+            </ul>
+            <h3>Engineering</h3>
+            <ul>
+              {% for skill in site.data.skills.engineering %}
+              <li>{{ skill }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </section>
+
+        <section class="cv-section">
+          <h2>Education</h2>
+          {% for edu in site.data.education %}
+          <div class="cv-education">
+            <strong>{{ edu.degree }}</strong>
+            <span class="cv-meta">{{ edu.institution }}</span>
+            <span class="cv-meta">{{ edu.start }}–{{ edu.end }}</span>
+            {% if edu.thesis %}
+            <span class="cv-meta cv-thesis">Thesis: {{ edu.thesis }}</span>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </section>
+
+        <section class="cv-section">
+          <h2>Languages</h2>
+          <ul>
+            {% for lang in site.data.profile.languages %}
+            <li>
+              {{ lang.name }}
+              {% if lang.certification %}<span class="cv-meta">({{ lang.level }})</span>{% else %}<span class="cv-meta">({{ lang.level }})</span>{% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+        </section>
+
+        <section class="cv-section">
+          <h2>Certifications</h2>
+          <ul>
+            {% for cert in site.data.certifications %}
+            {% unless cert.type == "Publication" %}
+            <li>
+              {{ cert.name }}
+              <span class="cv-meta">{{ cert.issuer }}{% if cert.type %} · {{ cert.type }}{% endif %}</span>
+            </li>
+            {% endunless %}
+            {% endfor %}
+          </ul>
+        </section>
+
+        <section class="cv-section">
+          <h2>Interests</h2>
+          <p class="cv-interests">{{ site.data.profile.interests | join: " · " }}</p>
+        </section>
+
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="cv-main">
+
+        <section class="cv-section">
+          <h2>Summary</h2>
+          <p>{{ site.data.profile.summary }}</p>
+        </section>
+
+        <section class="cv-section">
+          <h2>Experience</h2>
+          {% for job in site.data.experience %}
+          <div class="cv-job">
+            <div class="cv-job__header">
+              <div>
+                <span class="cv-job__company">{{ job.company }}</span>
+                {% if job.client %}<span class="cv-job__client"> · {{ job.client }}</span>{% endif %}
+                {% if job.note %}<span class="cv-meta"> ({{ job.note }})</span>{% endif %}
+              </div>
+              <div class="cv-job__meta">
+                <span class="cv-job__role">{{ job.role }}</span>
+                <span class="cv-job__dates">{{ job.start | replace: '-', '/' }} – {{ job.end | replace: '-', '/' }}</span>
+              </div>
+            </div>
+            <p class="cv-job__summary">{{ job.summary }}</p>
+            {% if job.technologies %}
+            <p class="cv-job__tech">
+              {% for tech in job.technologies %}<span class="cv-tag">{{ tech }}</span>{% endfor %}
+            </p>
+            {% endif %}
+            {% if job.projects %}
+            <ul class="cv-projects">
+              {% for project in job.projects %}
+              <li>
+                <strong>{{ project.name }}</strong>
+                {% if project.role %}<span class="cv-meta"> · {{ project.role }}</span>{% endif %}
+                — {{ project.description }}
+                {% if project.technologies %}
+                <span class="cv-project-tech">
+                  {% for tech in project.technologies %}<span class="cv-tag">{{ tech }}</span>{% endfor %}
+                </span>
+                {% endif %}
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </section>
+
+        {% assign publication = site.data.certifications | where: "type", "Publication" | first %}
+        {% if publication %}
+        <section class="cv-section">
+          <h2>Publication</h2>
+          <p class="cv-publication">{{ publication.authors }} "{{ publication.name }}". {{ publication.venue }}, {{ publication.year }}.</p>
+        </section>
+        {% endif %}
+
+      </main>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+- company: Mindera
+  client: Connells
+  role: Frontend Engineer
+  start: 2025-11
+  end: present
+  summary: >
+    Individual contributor on an internal AML and KYC compliance tool. Contributed across
+    the full frontend stack — from BFF API integration and role-based access control to
+    document management, PEP remediation flows, and case action workflows. Maintained code
+    quality through peer reviews, unit testing, and authoring internal testing documentation
+    and standards. Actively embraced AI-assisted development practices: configured GitHub
+    Copilot agents with project-specific instructions and reusable skills, and used AI
+    tooling throughout daily development for code generation, review, and documentation.
+  technologies: [TypeScript, React, Next.js, Vitest, React Testing Library, GitHub Copilot]
+
+- company: Mindera
+  client: Burberry
+  role: Tech Lead
+  start: 2021-06
+  end: 2025-11
+  summary: >
+    Tech Lead and active developer across multiple teams (typically 2–8 developers
+    and 1–2 QAEs), working on a variety of projects for Burberry. Supported the team
+    in technical decisions and solution design, with a focus on maintainability, quality,
+    and reliable delivery. Helped define roadmaps, manage requirements, and coordinate
+    dependencies within the team and with stakeholders. Contributed to team support and
+    monitoring activities, using tools like New Relic for alerting and observability;
+    created and updated runbooks to assist support teams.
+  projects:
+    - name: Content MFE
+      role: Lead & Contributor
+      description: >
+        Modular web application interfacing with multiple APIs and integrating analytics,
+        marketing, and A/B testing providers. Used ContentStack as the CMS for the editorial engine.
+      technologies: [TypeScript, React, Next.js, Express, CSS, Emotion, GraphQL, REST, ContentStack]
+
+    - name: Appointment Booking
+      role: Supporting Lead
+      description: >
+        Integration of Qudini into the existing stack to enable appointment bookings in Burberry stores.
+      technologies: [TypeScript, React, Next.js, Qudini]
+
+    - name: CMS Integrations
+      role: Supporting Lead
+      description: >
+        Development of small serverless services to automate CMS tasks such as bulk updates,
+        translations, metadata creation, and sitemaps.
+      technologies: [TypeScript, AWS Lambda, AWS EventBridge]
+
+    - name: Content360 / Search360
+      role: Supporting Lead
+      description: >
+        Development of a subgraph service within an Apollo Router supergraph.
+      technologies: [TypeScript, Node.js, NestJS, Apollo Router, GraphQL]
+
+- company: Mindera
+  client: Farfetch
+  role: Frontend Lead Developer
+  start: 2019-10
+  end: 2021-06
+  summary: >
+    Led a team of 4 developers and 1 QAE to evolve Farfetch's internal CMS tool,
+    improving content/component management for a global ecommerce platform.
+    Oversaw technical architecture and roadmap planning.
+  technologies: [TypeScript, React, Next.js, Express]
+
+- company: Mindera
+  client: Farfetch
+  role: Frontend Developer
+  start: 2017-11
+  end: 2019-10
+  summary: >
+    Developed ecommerce web apps delivering projects for 7+ global brands.
+    Integrated with proprietary CMS and multiple APIs.
+  technologies: [React, Redux, Styled Components, PostCSS]
+
+- company: Mindera
+  client: Tillster
+  role: Frontend Developer
+  start: 2017-03
+  end: 2017-11
+  summary: >
+    Delivered AngularJS-based frontends for international food service clients;
+    optimized UI for performance and scalability.
+  technologies: [AngularJS]
+
+- company: Mindera
+  client: Nuface
+  role: Frontend Developer
+  start: 2016-12
+  end: 2017-03
+  summary: >
+    Developed Shopify store features with Liquid templating; created Node.js middleware
+    for third-party integrations.
+  technologies: [HTML, SCSS, JavaScript, jQuery, Liquid, Node.js, Shopify]
+
+- company: Mindera
+  client: TVG
+  note: via Bluwalk
+  role: Software Developer
+  start: 2016-08
+  end: 2016-12
+  summary: >
+    Full stack web app development.
+  technologies: [Spring Boot, Thymeleaf, Bootstrap, JavaScript, jQuery]
+
+- company: Mindera
+  client: Various
+  note: via Bluwalk
+  role: Software Developer
+  start: 2016-07
+  end: 2016-07
+  summary: >
+    Two short engagements: frontend development for a web application (React + Java middleware),
+    and JavaScript backend development for an iOS application using a self-hosted Parse server.
+  technologies: [HTML, CSS, React, Webpack, Java, Spring Boot, JavaScript, Parse Server]
+
+- company: Bluwalk
+  client: Leanhub
+  role: Software Developer
+  start: 2015-06
+  end: 2016-07
+  summary: >
+    Analysis and development for Leanhub web app with AngularJS/jQuery frontend,
+    Java Play Framework backend, and PostgreSQL database.
+  technologies: [AngularJS, jQuery, JavaScript, Java, Play Framework, PostgreSQL]
+
+- company: Alert Life Sciences Computing
+  role: Frontend Developer
+  start: 2008-06
+  end: 2015-03
+  summary: >
+    UI analysis and development for clinical and non-clinical ALERT software.
+  technologies: [Flash, ActionScript, XML, HTML, CSS, Java, Oracle]

@@ -1,0 +1,20 @@
+- name: AI Assisted Software Engineering
+  issuer: Mindera
+  type: Workshop
+
+- name: Upskill - Generative AI
+  issuer: Mindera
+  type: Bootcamp
+
+- name: CAE (Certificate in Advanced English)
+  issuer: University of Cambridge
+  type: Certification
+
+- name: Professional Trainer Certificate (CAP)
+  type: Certification
+
+- name: "Multimodal application for visualization and manipulation of Electrocorticography data"
+  type: Publication
+  venue: "15ª Encontro Português de Computação Gráfica, Microsoft, Tagus Park, Porto Salvo"
+  year: 2007
+  authors: "Amaral P., Sales F., Cunha J.P.S., Dias P., Fernandes J.M."

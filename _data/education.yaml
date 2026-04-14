@@ -1,0 +1,11 @@
+- degree: MSc, Computer and Telematics Engineering
+  institution: University of Aveiro
+  start: 2007
+  end: 2008
+  thesis: "Multimodal visualization of Electrocorticography data"
+  thesis_technologies: [C++, VTK, OpenGL, ITK]
+
+- degree: BSc, Computer and Telematics Engineering
+  institution: University of Aveiro
+  start: 2001
+  end: 2007

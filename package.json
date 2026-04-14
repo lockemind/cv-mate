@@ -1,0 +1,16 @@
+{
+  "name": "cv-mate",
+  "version": "1.0.0",
+  "description": "A personal CV/resume management system for keeping curriculum vitae data structured, versioned, and ready to generate tailored outputs for different clients and opportunities.",
+  "main": "index.js",
+  "scripts": {
+    "preview": "node preview.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "js-yaml": "^4.1.1",
+    "nunjucks": "^3.2.4"
+  }
+}

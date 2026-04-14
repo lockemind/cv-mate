@@ -1,0 +1,13 @@
+title: Pedro Amaral — CV
+description: Software Engineer & Tech Lead
+url: ""
+baseurl: "/cv-mate"
+
+theme: null
+layouts_dir: _layouts
+
+exclude:
+  - assorted/
+  - README.md
+  - Gemfile
+  - Gemfile.lock
