@@ -1,5 +1,7 @@
 # cv-mate
 
+**[Live CV](https://lockemind.github.io/cv-mate/)**
+
 A personal CV/resume management system for keeping curriculum vitae data structured, versioned, and ready to generate tailored outputs for different clients and opportunities.
 
 ## Intent
