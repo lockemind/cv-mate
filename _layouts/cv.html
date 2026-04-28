@@ -30,15 +30,15 @@
         <section class="cv-section">
           <h2>Skills</h2>
           <div class="cv-skills">
-            <h3>Leadership</h3>
+            <h3>Technical Expertise</h3>
             <ul>
-              {% for skill in site.data.skills.leadership %}
+              {% for skill in site.data.skills.technical_expertise %}
               <li>{{ skill }}</li>
               {% endfor %}
             </ul>
-            <h3>Engineering</h3>
+            <h3>Leadership & Soft Skills</h3>
             <ul>
-              {% for skill in site.data.skills.engineering %}
+              {% for skill in site.data.skills.leadership_and_soft_skills %}
               <li>{{ skill }}</li>
               {% endfor %}
             </ul>
@@ -102,7 +102,7 @@
 
         <section class="cv-section">
           <h2>Experience</h2>
-          {% for job in site.data.experience %}
+          {% for job in site.data.experience %}{% unless job.highlight %}
           <div class="cv-job">
             <div class="cv-job__header">
               <div>
@@ -138,7 +138,26 @@
             </ul>
             {% endif %}
           </div>
-          {% endfor %}
+          {% endunless %}{% endfor %}
+        </section>
+
+        <section class="cv-section">
+          <h2>Earlier Experience</h2>
+          <ul class="cv-earlier">
+            {% for job in site.data.experience %}{% if job.highlight %}
+            <li>
+              <div class="cv-job__header">
+                <div>
+                  <span class="cv-job__company">{{ job.company }}</span>
+                  {% if job.client %}<span class="cv-job__client"> · {{ job.client }}</span>{% endif %}
+                  <span class="cv-job__role cv-meta"> · {{ job.role }}</span>
+                </div>
+                <span class="cv-job__dates">{{ job.start | replace: '-', '/' }} – {{ job.end | replace: '-', '/' }}</span>
+              </div>
+              <p class="cv-job__summary">{{ job.highlight }}</p>
+            </li>
+            {% endif %}{% endfor %}
+          </ul>
         </section>
 
         {% assign publication = site.data.certifications | where: "type", "Publication" | first %}

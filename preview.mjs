@@ -54,10 +54,10 @@ const TEMPLATE = `<!DOCTYPE html>
       <section class="cv-section">
         <h2>Skills</h2>
         <div class="cv-skills">
-          <h3>Leadership</h3>
-          <ul>{% for skill in data.skills.leadership %}<li>{{ skill }}</li>{% endfor %}</ul>
-          <h3>Engineering</h3>
-          <ul>{% for skill in data.skills.engineering %}<li>{{ skill }}</li>{% endfor %}</ul>
+          <h3>Technical Expertise</h3>
+          <ul>{% for skill in data.skills.technical_expertise %}<li>{{ skill }}</li>{% endfor %}</ul>
+          <h3>Leadership & Soft Skills</h3>
+          <ul>{% for skill in data.skills.leadership_and_soft_skills %}<li>{{ skill }}</li>{% endfor %}</ul>
         </div>
       </section>
 
@@ -107,7 +107,7 @@ const TEMPLATE = `<!DOCTYPE html>
 
       <section class="cv-section">
         <h2>Experience</h2>
-        {% for job in data.experience %}
+        {% for job in data.experience %}{% if not job.highlight %}
         <div class="cv-job">
           <div class="cv-job__header">
             <div>
@@ -139,16 +139,34 @@ const TEMPLATE = `<!DOCTYPE html>
           </ul>
           {% endif %}
         </div>
-        {% endfor %}
+        {% endif %}{% endfor %}
       </section>
 
-      {% set pub = data.certifications | selectattr("type", "equalto", "Publication") | first %}
-      {% if pub %}
+      <section class="cv-section">
+        <h2>Earlier Experience</h2>
+        <ul class="cv-earlier">
+          {% for job in data.experience %}{% if job.highlight %}
+          <li>
+            <div class="cv-job__header">
+              <div>
+                <span class="cv-job__company">{{ job.company }}</span>
+                {% if job.client %}<span class="cv-job__client"> · {{ job.client }}</span>{% endif %}
+                <span class="cv-job__role cv-meta"> · {{ job.role }}</span>
+              </div>
+              <span class="cv-job__dates">{{ job.start | replace("-", "/") }} – {{ job.end | replace("-", "/") }}</span>
+            </div>
+            <p class="cv-job__summary">{{ job.highlight }}</p>
+          </li>
+          {% endif %}{% endfor %}
+        </ul>
+      </section>
+
+      {% for cert in data.certifications %}{% if cert.type == "Publication" %}
       <section class="cv-section">
         <h2>Publication</h2>
-        <p class="cv-publication">{{ pub.authors }} "{{ pub.name }}". {{ pub.venue }}, {{ pub.year }}.</p>
+        <p class="cv-publication">{{ cert.authors }} "{{ cert.name }}". {{ cert.venue }}, {{ cert.year }}.</p>
       </section>
-      {% endif %}
+      {% endif %}{% endfor %}
 
     </main>
   </div>
@@ -162,6 +180,13 @@ const server = http.createServer((req, res) => {
     const css = fs.readFileSync(path.join(__dirname, "assets/css/cv.css"), "utf8");
     res.writeHead(200, { "Content-Type": "text/css" });
     return res.end(css);
+  }
+
+  // Serve PDF
+  if (req.url === "/assets/cv.pdf") {
+    const pdf = fs.readFileSync(path.join(__dirname, "assets/cv.pdf"));
+    res.writeHead(200, { "Content-Type": "application/pdf", "Content-Disposition": "attachment; filename=\"PedroAmaralCV.pdf\"" });
+    return res.end(pdf);
   }
 
   // Render CV (reload data on each request so edits are live)

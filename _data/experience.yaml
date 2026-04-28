@@ -79,20 +79,14 @@
   role: Frontend Developer
   start: 2017-03
   end: 2017-11
-  summary: >
-    Delivered AngularJS-based frontends for international food service clients;
-    optimized UI for performance and scalability.
-  technologies: [AngularJS]
+  highlight: Frontend for international food service clients across multiple markets
 
 - company: Mindera
   client: Nuface
   role: Frontend Developer
   start: 2016-12
   end: 2017-03
-  summary: >
-    Developed Shopify store features with Liquid templating; created Node.js middleware
-    for third-party integrations.
-  technologies: [HTML, SCSS, JavaScript, jQuery, Liquid, Node.js, Shopify]
+  highlight: Shopify store development with custom Node.js middleware
 
 - company: Mindera
   client: TVG
@@ -100,9 +94,7 @@
   role: Software Developer
   start: 2016-08
   end: 2016-12
-  summary: >
-    Full stack web app development.
-  technologies: [Spring Boot, Thymeleaf, Bootstrap, JavaScript, jQuery]
+  highlight: Full stack development for a US horse racing and betting platform
 
 - company: Mindera
   client: Various
@@ -110,25 +102,17 @@
   role: Software Developer
   start: 2016-07
   end: 2016-07
-  summary: >
-    Two short engagements: frontend development for a web application (React + Java middleware),
-    and JavaScript backend development for an iOS application using a self-hosted Parse server.
-  technologies: [HTML, CSS, React, Webpack, Java, Spring Boot, JavaScript, Parse Server]
+  highlight: Two short-term full stack engagements across React and Node.js
 
 - company: Bluwalk
   client: Leanhub
   role: Software Developer
   start: 2015-06
   end: 2016-07
-  summary: >
-    Analysis and development for Leanhub web app with AngularJS/jQuery frontend,
-    Java Play Framework backend, and PostgreSQL database.
-  technologies: [AngularJS, jQuery, JavaScript, Java, Play Framework, PostgreSQL]
+  highlight: Full stack development for a lean project management SaaS
 
 - company: Alert Life Sciences Computing
   role: Frontend Developer
   start: 2008-06
   end: 2015-03
-  summary: >
-    UI analysis and development for clinical and non-clinical ALERT software.
-  technologies: [Flash, ActionScript, XML, HTML, CSS, Java, Oracle]
+  highlight: 7 years building clinical UI for healthcare software

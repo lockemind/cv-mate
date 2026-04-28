@@ -1,12 +1,4 @@
-leadership:
-  - Problem Solving & Critical Thinking
-  - Technical Leadership & Team Guidance
-  - Agile & Cross-functional Collaboration
-  - Communication & Stakeholder Management
-  - Requirements Analysis & Roadmap Planning
-  - Continuous Learning & Mentoring
-
-engineering:
+technical_expertise:
   - Solution Design & Code Quality
   - Frontend Architecture
   - Modern JavaScript & CSS
@@ -14,3 +6,11 @@ engineering:
   - CI/CD & DevOps Practices
   - Observability
   - AI-Assisted Software Engineering
+
+leadership_and_soft_skills:
+  - Problem Solving & Critical Thinking
+  - Technical Leadership & Team Guidance
+  - Agile & Cross-functional Collaboration
+  - Communication & Stakeholder Management
+  - Requirements Analysis & Roadmap Planning
+  - Continuous Learning & Mentoring
