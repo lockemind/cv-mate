@@ -32,6 +32,12 @@ const TEMPLATE = `<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ data.profile.name }} — CV</title>
   <link rel="stylesheet" href="/assets/css/cv.css">
+  <script>
+    (function() {
+      var t = localStorage.getItem('cv-theme');
+      if (t && t !== 'default') document.documentElement.className = 'theme-' + t;
+    })();
+  </script>
 </head>
 <body>
 <div class="cv">
@@ -45,8 +51,24 @@ const TEMPLATE = `<!DOCTYPE html>
       <span>{{ data.profile.contact.email }}</span>
       <span>{{ data.profile.contact.location }}</span>
       <a class="cv-pdf-link" href="/assets/cv.pdf" download>Download PDF</a>
+      <button class="cv-theme-switcher" id="theme-btn" onclick="cycleTheme()"></button>
     </div>
   </header>
+  <script>
+    var _themes = ['default', 'dark', 'minimal'];
+    var _labels = { default: 'Default', dark: 'Dark', minimal: 'Minimal' };
+    function cycleTheme() {
+      var cur = localStorage.getItem('cv-theme') || 'default';
+      var next = _themes[(_themes.indexOf(cur) + 1) % _themes.length];
+      document.documentElement.className = next === 'default' ? '' : 'theme-' + next;
+      localStorage.setItem('cv-theme', next);
+      document.getElementById('theme-btn').textContent = _labels[next];
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      var cur = localStorage.getItem('cv-theme') || 'default';
+      document.getElementById('theme-btn').textContent = _labels[cur];
+    });
+  </script>
 
   <div class="cv-body">
     <aside class="cv-sidebar">
